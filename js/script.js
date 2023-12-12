@@ -5,6 +5,8 @@ createApp({
         return {
             activeSlide: 0,
 
+            timer: null,
+
             slides: [{
                 image: 'img/01.webp',
                 title: 'Marvel\'s Spiderman Miles Morale',
@@ -43,6 +45,21 @@ createApp({
 
         activeThumb(i) {
             this.activeSlide = i;
+        },
+
+        autoPlay() {
+            this.timer = setInterval(() => {
+                this.nextSlide();
+            }, 3000);
+        },
+
+        stopAutoPlay() {
+            clearInterval(this.timer);
+            this.timer = 0;
         }
+
+    },
+    mounted() {
+        this.autoPlay();
     }
 }).mount("#app");
